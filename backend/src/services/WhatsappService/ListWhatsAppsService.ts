@@ -11,7 +11,7 @@ const ListWhatsAppsService = async (): Promise<Whatsapp[]> => {
       }
     ]
   });
-
+  console.log(whatsapps)
   return whatsapps;
 };
 

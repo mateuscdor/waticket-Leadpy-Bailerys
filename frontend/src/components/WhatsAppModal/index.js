@@ -156,8 +156,8 @@ const WhatsAppModal = ({ open, onClose, whatsAppId }) => {
         setOutOfWorkMessage(data.outOfWorkMessage);
         setStartWorkHour(data.startWorkHour);
         setEndWorkHour(data.endWorkHour);
-        setStartWorkHour(data.startWorkHour1);
-        setEndWorkHour(data.endWorkHour1);
+        setStartWorkHour1(data.startWorkHour1);
+        setEndWorkHour1(data.endWorkHour1);
         setStartWorkHourWeekend(data.startWorkHourWeekend);
         setEndWorkHourWeekend(data.endWorkHourWeekend);
         const whatsQueueIds = data.queues?.map((queue) => queue.id);

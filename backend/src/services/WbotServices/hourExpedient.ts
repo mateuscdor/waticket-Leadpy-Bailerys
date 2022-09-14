@@ -2,7 +2,7 @@ import ListWhatsAppsService from "../WhatsappService/ListWhatsAppsService";
 
 const hourExpedient = async () => {
   const data = new Date();
-  const weekDay = new Date().toLocaleDateString("en-US", {
+  const weekDay = new Date().toLocaleDateString("pt-BR", {
     weekday: "long"
   });
   const hora = data.getHours();
@@ -38,8 +38,9 @@ const hourExpedient = async () => {
     const verifyDay = weekDays.includes(weekDay);
     // const verifyWorkHour =;
     const verifyWorkHour =
-      value.startWorkHour <= horaAtual && value.endWorkHour >= horaAtual && value.startWorkHour1 <= horaAtual && value.endWorkHour1 >= horaAtual;
-
+    value.startWorkHour <= horaAtual && value.endWorkHour >= horaAtual && value.startWorkHour1 <= horaAtual && value.endWorkHour1 >= horaAtual;
+    const verifyWorkHour1 =
+      value.startWorkHour1 <= horaAtual && value.endWorkHour1 >= horaAtual;
     const verifyWeekendWorkHour =
       value.startWorkHourWeekend <= horaAtual &&
       value.endWorkHourWeekend >= horaAtual;
@@ -57,19 +58,20 @@ const hourExpedient = async () => {
         } else if (
           weekDay !== "Saturday" &&
           weekDay !== "Sunday" &&
-          verifyWorkHour
+          verifyWorkHour ||
+          verifyWorkHour1
         ) {
-          // console.log("dentro do dia da semana e expediente definidos");
+          console.log("dentro do dia da semana e expediente definidos");
           resulta = "true";
         } else {
-          // console.log("fora do expediente da semana e do fim de semana");
+          console.log("fora do expediente" + verifyWorkHour1);
           resulta = "false";
         }
       } else {
         // console.log("Dia sem expediente 1");
         resulta = "false";
       }
-    } else {
+    } else {  
       // Não definiu expediente, deixa o sistema 24h funcionando completo com direcionamentos a atendentes
       // console.log("Horario Expediente Desativado");
       resulta = "true";
