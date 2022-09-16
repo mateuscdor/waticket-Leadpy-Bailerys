@@ -781,6 +781,7 @@ const handleMessage = async (
         getLastMessageFromMe?.body ===
         formatBody(`\u200e${whatsapp.outOfWorkMessage}`, contact)
       )
+      
         return;
 
       const body = formatBody(`\u200e${whatsapp.outOfWorkMessage}`, contact);
