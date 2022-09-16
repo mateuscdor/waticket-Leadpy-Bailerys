@@ -9,38 +9,46 @@ const hourExpedient = async () => {
   const min = data.toLocaleString("pt-BR", { minute: "2-digit" });
   const horaAtual = `${(hora < 10 ? "0" : "") + hora}:${min}`;
   const workHour = await ListWhatsAppsService();
+  
   const weekDays: string[] = [];
   let resulta = "";
 
   workHour.map(value => {
     {
-      value.monday ? weekDays.push("Monday") : "";
+      value.monday ? weekDays.push("segunda-feira") : "";
     }
     {
-      value.tuesday ? weekDays.push("Tuesday") : "";
+      value.tuesday ? weekDays.push("terça-feira") : "";
     }
     {
-      value.wednesday ? weekDays.push("Wednesday") : "";
+      value.wednesday ? weekDays.push("quarta-feira") : "";
     }
     {
-      value.thursday ? weekDays.push("Thursday") : "";
+      value.thursday ? weekDays.push("quinta-feira") : "";
     }
     {
-      value.friday ? weekDays.push("Friday") : "";
+      value.friday ? weekDays.push("sexta-feira") : "";
     }
     {
-      value.saturday ? weekDays.push("Saturday") : "";
+      value.saturday ? weekDays.push("sabado") : "";
     }
     {
-      value.sunday ? weekDays.push("Sunday") : "";
+      value.sunday ? weekDays.push("domingo") : "";
     }
 
     const verifyDay = weekDays.includes(weekDay);
+    console.log(weekDays)
+    console.log(weekDay)
+
     // const verifyWorkHour =;
     const verifyWorkHour =
-    value.startWorkHour <= horaAtual && value.endWorkHour >= horaAtual && value.startWorkHour1 <= horaAtual && value.endWorkHour1 >= horaAtual;
+    value.startWorkHour <= horaAtual && value.endWorkHour >= horaAtual;
     const verifyWorkHour1 =
-      value.startWorkHour1 <= horaAtual && value.endWorkHour1 >= horaAtual;
+    value.startWorkHour1 <= horaAtual && value.endWorkHour1 >= horaAtual;
+    console.log(horaAtual)
+    console.log(verifyWorkHour)
+    console.log(verifyWorkHour1)
+
     const verifyWeekendWorkHour =
       value.startWorkHourWeekend <= horaAtual &&
       value.endWorkHourWeekend >= horaAtual;
@@ -57,14 +65,15 @@ const hourExpedient = async () => {
           resulta = "true";
         } else if (
           weekDay !== "Saturday" &&
-          weekDay !== "Sunday" &&
+          weekDay !== "Sunday" && (
           verifyWorkHour ||
           verifyWorkHour1
+          )
         ) {
-          console.log("dentro do dia da semana e expediente definidos");
+         // console.log("dentro do dia da semana e expediente definidos");
           resulta = "true";
         } else {
-          console.log("fora do expediente" + verifyWorkHour1);
+        //  console.log("fora do expediente da semana e do fim de semana");
           resulta = "false";
         }
       } else {
